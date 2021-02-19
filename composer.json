@@ -1,18 +1,22 @@
 {
-	"name": "tenantcloud/composer-package",
-	"description": "A template for composer packages",
+	"name": "tenantcloud/php-standard",
+	"description": "TenantCloud's PHP standard library: lazy, iterators etc",
 	"minimum-stability": "stable",
 	"license": "MIT",
 	"require": {
 		"php": ">=7.4"
 	},
 	"require-dev": {
-		"pestphp/pest": "^1.0"
+		"pestphp/pest": "^1.0",
+		"ramsey/uuid": "^4.1"
 	},
 	"autoload": {
 		"psr-0": {
 			"": "src/"
-		}
+		},
+		"files": [
+			"src/TenantCloud/Standard/Lazy/functions.php"
+		]
 	},
 	"autoload-dev": {
 		"psr-4": {
