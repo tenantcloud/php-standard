@@ -41,20 +41,9 @@ jobs:
                 with:
                     composer-options: --working-dir=tools/phpstan
 
-            -   name: Choose PHPStan config
-                id: phpstan_config_choice
-                run: |
-                    if [$PHP == '8.0']
-                    then
-                        echo "::set-output name=config_file::phpstan.php8.neon"
-                    else
-                        echo "::set-output name=config_file::phpstan.neon"
-                    fi
-                env:
-                    PHP: ${{ matrix.php }}
-
             -   name: Run PHPStan
-                run: composer phpstan -- -c ${{ steps.phpstan_config_choice.outputs.config_file }}
+                # Workarounds all day long
+                run: composer phpstan -- -c ${{ fromJSON('["phpstan.php8.neon", "phpstan.neon"]')[matrix.php == '8.0'] }}
 
     code-style:
         name: Code style
