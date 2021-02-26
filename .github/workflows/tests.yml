@@ -43,7 +43,7 @@ jobs:
 
             -   name: Run PHPStan
                 # Workarounds all day long
-                run: composer phpstan -- -c ${{ fromJSON('["phpstan.php8.neon", "phpstan.neon"]')[matrix.php == '8.0'] }}
+                run: composer phpstan -- -c ${{ fromJSON('["phpstan.php8.neon", "phpstan.neon"]')[matrix.php != '8.0'] }}
 
     code-style:
         name: Code style
