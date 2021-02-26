@@ -24,6 +24,10 @@ final class StaticConstructorLoader
 		// Find Composer autoloader
 		$loaders = spl_autoload_functions();
 
+		if ($loaders === false) {
+			throw new Exception('Autoload stack is not activated.');
+		}
+
 		$otherLoaders = [];
 		$composerLoader = null;
 
