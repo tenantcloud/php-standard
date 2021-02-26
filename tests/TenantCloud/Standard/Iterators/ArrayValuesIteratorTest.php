@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\TenantCloud\Standard\Iterators;
+
 use TenantCloud\Standard\Iterators\ArrayValuesIterator;
 
 test('iterates over empty instance', function () {

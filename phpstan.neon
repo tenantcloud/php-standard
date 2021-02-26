@@ -12,3 +12,8 @@ parameters:
 	ignoreErrors:
 		# There's no extension for that :(
 		- '#Call to an undefined method Pest\\Expectations\\Expectation|Pest\\Expectations\\Support\\Extendable::#i'
+		# Also a bug?
+		- '#Method TenantCloud\\Standard\\Enum\\Enum::__debugInfo\(\) return type has no value type specified in iterable type array\.#i'
+		# @return never is ignored. Again a bug.
+		- '#Method TenantCloud\\Standard\\Enum\\Enum::__serialize\(\) return type has no value type specified in iterable type array\.#i'
+		- '#Method TenantCloud\\Standard\\Enum\\Enum::__unserialize\(\) has parameter \$data with no value type specified in iterable type array.#i'

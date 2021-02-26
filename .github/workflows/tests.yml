@@ -6,7 +6,7 @@ on:
 
 jobs:
     test:
-        name: Tests & PHPStan on PHP ${{ matrix.php }}
+        name: Tests & PHPStan on PHP ${{ matrix.php }} and ${{ matrix.dependencies }} dependencies
 
         runs-on: ubuntu-latest
 
@@ -14,6 +14,7 @@ jobs:
             fail-fast: true
             matrix:
                 php: [7.4, 8.0]
+                dependencies: [lowest, highest]
 
         steps:
             -   name: Checkout code
@@ -23,34 +24,26 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ matrix.php }}
-                    tools: composer:v2
                     coverage: none
 
-            -   name: Validate composer.json and composer.lock
-                run: composer validate
-
-            -   name: Cache Composer packages
-                id: composer-cache
-                uses: actions/cache@v2
-                with:
-                    path: vendor
-                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: |
-                        ${{ runner.os }}-php-
-
             -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress
+                uses: ramsey/composer-install@v1
+                with:
+                    dependency-versions: ${{ matrix.dependencies }}
 
             -   name: Execute tests
                 run: composer test -- --colors=always
 
             # Those should usually be a separate job, but as GitHub Actions currently does not support any form of sharing
             # steps or an image between them, extracting those to a separate job would mean a full blown copy-paste of this one.
-            -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress --working-dir=tools/phpstan
+            -   name: Install PHPStan dependencies
+                uses: ramsey/composer-install@v1
+                with:
+                    composer-options: --working-dir=tools/phpstan
 
-            -   name: Run phpstan
-                run: composer phpstan
+            -   name: Run PHPStan
+                # Workarounds all day long
+                run: composer phpstan -- -c ${{ fromJSON('["phpstan.php8.neon", "phpstan.neon"]')[matrix.php != '8.0'] }}
 
     code-style:
         name: Code style
@@ -65,21 +58,12 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: 8.0
-                    extensions: dom, curl, libxml, mbstring, zip
-                    tools: composer:v2
                     coverage: none
 
-            -   name: Cache Composer packages
-                id: composer-cache
-                uses: actions/cache@v2
-                with:
-                    path: vendor
-                    key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-                    restore-keys: |
-                        ${{ runner.os }}-php-
-
             -   name: Install dependencies
-                run: composer install --prefer-dist --no-progress --working-dir=tools/php-cs-fixer
+                uses: ramsey/composer-install@v1
+                with:
+                    composer-options: --working-dir=tools/php-cs-fixer
 
             -   name: Run php-cs-fixer
                 run: composer cs-fix -- --dry-run --diff --using-cache=no --diff-format udiff
