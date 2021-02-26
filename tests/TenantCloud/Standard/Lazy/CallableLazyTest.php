@@ -1,5 +1,8 @@
 <?php
 
+namespace Tests\TenantCloud\Standard\Lazy;
+
+use stdClass;
 use TenantCloud\Standard\Lazy\CallableLazy;
 use function TenantCloud\Standard\Lazy\lazy;
 
