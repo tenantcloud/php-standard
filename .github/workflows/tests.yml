@@ -44,7 +44,7 @@ jobs:
             -   name: Choose PHPStan config
                 id: phpstan_config_choice
                 run: |
-                    if [PHP == '8.0']
+                    if [$PHP == '8.0']
                     then
                         echo "::set-output name=config_file::phpstan.php8.neon"
                     else
