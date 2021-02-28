@@ -3,7 +3,6 @@
 namespace TenantCloud\Standard\StaticConstructor;
 
 use Composer\Autoload\ClassLoader;
-use Exception;
 
 /**
  * Unfortunately, PHP does not support static initialization, so we're emulating it with a custom class loader.
@@ -14,8 +13,7 @@ use Exception;
  */
 final class StaticConstructorLoader
 {
-	/** @var ClassLoader */
-	private $classLoader;
+	private ClassLoader $classLoader;
 
 	public function __construct(ClassLoader $classLoader)
 	{
@@ -25,7 +23,7 @@ final class StaticConstructorLoader
 		$loaders = spl_autoload_functions();
 
 		if ($loaders === false) {
-			throw new Exception('Autoload stack is not activated.');
+			throw new StaticConstructorInvalidUsageException('Autoload stack is not activated.');
 		}
 
 		$otherLoaders = [];
@@ -40,56 +38,48 @@ final class StaticConstructorLoader
 				}
 
 				if ($loader[0] instanceof self) {
-					throw new Exception(sprintf('%s already registered', self::class));
+					throw new StaticConstructorInvalidUsageException(self::class . ' already registered');
 				}
 			}
 			$otherLoaders[] = $loader;
 		}
 
 		if (!$composerLoader) {
-			throw new Exception(sprintf('%s was not found in registered autoloaders', ClassLoader::class));
+			throw new StaticConstructorInvalidUsageException(ClassLoader::class . ' was not found in registered autoloaders');
 		}
 
 		// Unregister Composer autoloader and all preceding autoloaders as __autoload() implementation
-		array_map('spl_autoload_unregister', array_merge($otherLoaders, [$composerLoader]));
+		foreach ([...$otherLoaders, $composerLoader] as $loader) {
+			spl_autoload_unregister($loader);
+		}
 
 		// Restoring the original queue order
-		$loadersToRestore = array_merge([$this->getLoadClassCallback()], array_reverse($otherLoaders));
-
-		// Filling array with true values
-		$flagTrue = array_fill(0, count($loadersToRestore), true);
+		$loadersToRestore = [[$this, 'loadClass'], ...array_reverse($otherLoaders)];
 
 		// Register given function from $loadersToRestore as __autoload implementation
-		array_map('spl_autoload_register', $loadersToRestore, $flagTrue, $flagTrue);
+		foreach ($loadersToRestore as $loader) {
+			spl_autoload_register($loader, true, true);
+		}
 	}
 
-	private function getLoadClassCallback(): callable
+	/**
+	 * @param class-string $className
+	 */
+	public function loadClass(string $className): ?bool
 	{
-		/*
-		 * @param class-string<HasStaticConstructor> $className
-		 */
-		return function (string $className) {
-			$result = $this->classLoader->loadClass($className);
+		$result = $this->classLoader->loadClass($className);
 
-			if ($this->shouldCallConstructor($className, $result)) {
-				$className::__constructStatic();
-			}
+		if ($result && $this->shouldCallConstructor($className)) {
+			/* @var class-string<HasStaticConstructor> $className */
+			$className::__constructStatic();
+		}
 
-			return $result;
-		};
+		return $result;
 	}
 
-	private function shouldCallConstructor(string $className, ?bool $isLoaded = null): bool
+	private function shouldCallConstructor(string $className): bool
 	{
-		if ($isLoaded !== true) {
-			return false;
-		}
-
-		// Excluding our interface
-		if ($className === HasStaticConstructor::class) {
-			return false;
-		}
-
-		return is_a($className, HasStaticConstructor::class, true);
+		return $className !== HasStaticConstructor::class &&
+			is_a($className, HasStaticConstructor::class, true);
 	}
 }
