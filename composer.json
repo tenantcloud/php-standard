@@ -17,6 +17,8 @@
 			"": "src/"
 		},
 		"files": [
+			"src/TenantCloud/Standard/StaticConstructor/functions.php",
+			"src/TenantCloud/Standard/StaticConstructor/load.php",
 			"src/TenantCloud/Standard/Lazy/functions.php"
 		]
 	},

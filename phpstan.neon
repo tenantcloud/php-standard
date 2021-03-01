@@ -9,6 +9,10 @@ parameters:
 		- src
 		- tests
 
+	excludePaths:
+		- tests/TenantCloud/Standard/Enum/DuplicateValueEnumTest.php
+		- tests/TenantCloud/Standard/Enum/Stubs/DuplicateValueEnumStub.php
+
 	ignoreErrors:
 		# There's no extension for that :(
 		- '#Call to an undefined method Pest\\Expectations\\Expectation|Pest\\Expectations\\Support\\Extendable::#i'
@@ -16,8 +20,9 @@ parameters:
 			message: '#Undefined variable: \$this#i'
 			path: '*Test.php'
 		# Also a bug?
+		- '#Method TenantCloud\\Standard\\StaticConstructor\\StaticConstructorLoader::#i'
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__debugInfo\(\) return type has no value type specified in iterable type array\.#i'
-		- '#Parameter \#1 $callback of function spl_autoload_register expects \(callable\(string\): void\)|null, array\(.*, ''loadClass''\) given\.#i'
+		- '#Parameter \#1 \$callback of function spl_autoload_register expects \(callable\(string\): void\)\|null, array\(.*, ''loadClass''\) given\.#i'
 		# @return never is ignored. Again a bug.
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__serialize\(\) return type has no value type specified in iterable type array\.#i'
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__unserialize\(\) has parameter \$data with no value type specified in iterable type array.#i'

@@ -4,7 +4,6 @@ namespace Tests\TenantCloud\Standard\Enum;
 
 use TenantCloud\Standard\Enum\EnumInvalidUsageException;
 use TenantCloud\Standard\Enum\ValueNotFoundException;
-use Tests\TenantCloud\Standard\Enum\Stubs\DuplicateValueEnumStub;
 use Tests\TenantCloud\Standard\Enum\Stubs\ValueEnumStub;
 
 ValueEnumStub::__constructStatic();
@@ -60,8 +59,4 @@ test('returns an array of all values', function () {
 
 test('throws when trying to serialize', function () {
 	serialize(ValueEnumStub::$ONE_TWO_THREE);
-})->expectException(EnumInvalidUsageException::class);
-
-test('duplicated values enum initialization results in an error', function () {
-	DuplicateValueEnumStub::__constructStatic();
 })->expectException(EnumInvalidUsageException::class);
