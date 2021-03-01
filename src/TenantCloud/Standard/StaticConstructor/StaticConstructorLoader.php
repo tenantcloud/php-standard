@@ -38,6 +38,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getPrefixes()
@@ -46,6 +48,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getPrefixesPsr4()
@@ -54,6 +58,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getFallbackDirs()
@@ -62,6 +68,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getFallbackDirsPsr4()
@@ -70,6 +78,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getClassMap()
@@ -78,6 +88,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function addClassMap(array $classMap)
@@ -86,6 +98,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function add($prefix, $paths, $prepend = false)
@@ -94,6 +108,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function addPsr4($prefix, $paths, $prepend = false)
@@ -102,6 +118,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function set($prefix, $paths)
@@ -110,6 +128,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function setPsr4($prefix, $paths)
@@ -118,6 +138,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function setUseIncludePath($useIncludePath)
@@ -126,6 +148,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getUseIncludePath()
@@ -134,7 +158,11 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
+	 *
+	 * @param mixed $classMapAuthoritative
 	 */
 	public function setClassMapAuthoritative($classMapAuthoritative)
 	{
@@ -142,6 +170,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function isClassMapAuthoritative()
@@ -150,6 +180,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function setApcuPrefix($apcuPrefix)
@@ -158,6 +190,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function getApcuPrefix()
@@ -166,6 +200,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function register($prepend = false)
@@ -174,6 +210,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function unregister()
@@ -182,6 +220,8 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
+	 * {@inheritDoc}
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function findFile($class)
