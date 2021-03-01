@@ -9,13 +9,16 @@
 		"illuminate/support": "^7.0|^8.0"
 	},
 	"require-dev": {
-		"pestphp/pest": "^1.0"
+		"pestphp/pest": "^1.0",
+		"mockery/mockery": "^1.4"
 	},
 	"autoload": {
 		"psr-0": {
 			"": "src/"
 		},
 		"files": [
+			"src/TenantCloud/Standard/StaticConstructor/functions.php",
+			"src/TenantCloud/Standard/StaticConstructor/load.php",
 			"src/TenantCloud/Standard/Lazy/functions.php"
 		]
 	},

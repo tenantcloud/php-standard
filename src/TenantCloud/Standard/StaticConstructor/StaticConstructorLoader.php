@@ -3,7 +3,6 @@
 namespace TenantCloud\Standard\StaticConstructor;
 
 use Composer\Autoload\ClassLoader;
-use Exception;
 
 /**
  * Unfortunately, PHP does not support static initialization, so we're emulating it with a custom class loader.
@@ -12,84 +11,227 @@ use Exception;
  *
  * @see https://github.com/dbalabka/php-enumeration/blob/master/src/StaticConstructorLoader/StaticConstructorLoader.php
  */
-final class StaticConstructorLoader
+final class StaticConstructorLoader extends ClassLoader
 {
-	/** @var ClassLoader */
-	private $classLoader;
+	private ClassLoader $delegate;
 
-	public function __construct(ClassLoader $classLoader)
+	public function __construct(ClassLoader $delegate)
 	{
-		$this->classLoader = $classLoader;
+		parent::__construct();
 
-		// Find Composer autoloader
-		$loaders = spl_autoload_functions();
-
-		if ($loaders === false) {
-			throw new Exception('Autoload stack is not activated.');
-		}
-
-		$otherLoaders = [];
-		$composerLoader = null;
-
-		foreach ($loaders as $loader) {
-			if (is_array($loader)) {
-				if ($loader[0] === $classLoader) {
-					$composerLoader = $loader;
-
-					break;
-				}
-
-				if ($loader[0] instanceof self) {
-					throw new Exception(sprintf('%s already registered', self::class));
-				}
-			}
-			$otherLoaders[] = $loader;
-		}
-
-		if (!$composerLoader) {
-			throw new Exception(sprintf('%s was not found in registered autoloaders', ClassLoader::class));
-		}
-
-		// Unregister Composer autoloader and all preceding autoloaders as __autoload() implementation
-		array_map('spl_autoload_unregister', array_merge($otherLoaders, [$composerLoader]));
-
-		// Restoring the original queue order
-		$loadersToRestore = array_merge([$this->getLoadClassCallback()], array_reverse($otherLoaders));
-
-		// Filling array with true values
-		$flagTrue = array_fill(0, count($loadersToRestore), true);
-
-		// Register given function from $loadersToRestore as __autoload implementation
-		array_map('spl_autoload_register', $loadersToRestore, $flagTrue, $flagTrue);
+		$this->delegate = $delegate;
 	}
 
-	private function getLoadClassCallback(): callable
+	/**
+	 * @param class-string $className
+	 */
+	public function loadClass($className): ?bool
 	{
-		/*
-		 * @param class-string<HasStaticConstructor> $className
-		 */
-		return function (string $className) {
-			$result = $this->classLoader->loadClass($className);
+		$loaded = $this->delegate->loadClass($className);
 
-			if ($this->shouldCallConstructor($className, $result)) {
-				$className::__constructStatic();
-			}
+		if ($loaded && $this->shouldCallConstructor($className)) {
+			/* @var class-string<HasStaticConstructor> $className */
+			$className::__constructStatic();
+		}
 
-			return $result;
-		};
+		return $loaded;
 	}
 
-	private function shouldCallConstructor(string $className, ?bool $isLoaded = null): bool
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getPrefixes()
 	{
-		if ($isLoaded !== true) {
-			return false;
-		}
+		return $this->delegate->getPrefixes();
+	}
 
-		// Excluding our interface
-		if ($className === HasStaticConstructor::class) {
-			return false;
-		}
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getPrefixesPsr4()
+	{
+		return $this->delegate->getPrefixesPsr4();
+	}
 
-		return is_a($className, HasStaticConstructor::class, true);
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getFallbackDirs()
+	{
+		return $this->delegate->getFallbackDirs();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getFallbackDirsPsr4()
+	{
+		return $this->delegate->getFallbackDirsPsr4();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getClassMap()
+	{
+		return $this->delegate->getClassMap();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function addClassMap(array $classMap)
+	{
+		$this->delegate->addClassMap($classMap);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function add($prefix, $paths, $prepend = false)
+	{
+		$this->delegate->add($prefix, $paths, $prepend);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function addPsr4($prefix, $paths, $prepend = false)
+	{
+		$this->delegate->addPsr4($prefix, $paths, $prepend);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function set($prefix, $paths)
+	{
+		$this->delegate->set($prefix, $paths);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function setPsr4($prefix, $paths)
+	{
+		$this->delegate->setPsr4($prefix, $paths);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function setUseIncludePath($useIncludePath)
+	{
+		$this->delegate->setUseIncludePath($useIncludePath);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getUseIncludePath()
+	{
+		return $this->delegate->getUseIncludePath();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @param mixed $classMapAuthoritative
+	 */
+	public function setClassMapAuthoritative($classMapAuthoritative)
+	{
+		$this->delegate->setClassMapAuthoritative($classMapAuthoritative);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function isClassMapAuthoritative()
+	{
+		return $this->delegate->isClassMapAuthoritative();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function setApcuPrefix($apcuPrefix)
+	{
+		$this->delegate->setApcuPrefix($apcuPrefix);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function getApcuPrefix()
+	{
+		return $this->delegate->getApcuPrefix();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function register($prepend = false)
+	{
+		$this->delegate->register($prepend);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function unregister()
+	{
+		$this->delegate->unregister();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @codeCoverageIgnore
+	 */
+	public function findFile($class)
+	{
+		return $this->delegate->findFile($class);
+	}
+
+	private function shouldCallConstructor(string $className): bool
+	{
+		return $className !== HasStaticConstructor::class &&
+			is_a($className, HasStaticConstructor::class, true);
 	}
 }

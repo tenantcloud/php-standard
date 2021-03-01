@@ -4,10 +4,7 @@ namespace Tests\TenantCloud\Standard\Enum\Stubs;
 
 use TenantCloud\Standard\Enum\ValueEnum;
 
-/**
- * @extends ValueEnum<int>
- */
-class DuplicateValueEnumStub extends ValueEnum
+final class DuplicateValueEnumStub extends ValueEnum
 {
 	public static self $ONE_TWO_THREE;
 
