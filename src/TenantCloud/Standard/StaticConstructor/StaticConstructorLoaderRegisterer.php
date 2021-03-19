@@ -8,6 +8,8 @@ class StaticConstructorLoaderRegisterer
 {
 	private static ?StaticConstructorLoader $loader = null;
 
+	private static ?ClassLoader $composerClassLoader = null;
+
 	public static function loader(): ?StaticConstructorLoader
 	{
 		return self::$loader;
@@ -19,11 +21,10 @@ class StaticConstructorLoaderRegisterer
 			return;
 		}
 
-		$composerClassLoader = array_values(ClassLoader::getRegisteredLoaders())[0];
+		self::$composerClassLoader = self::findComposerLoader();
+		self::$loader = new StaticConstructorLoader(self::$composerClassLoader);
 
-		self::$loader = new StaticConstructorLoader($composerClassLoader);
-
-		replace_spl_autoloader([$composerClassLoader, 'loadClass'], [self::$loader, 'loadClass']);
+		replace_spl_autoloader([self::$composerClassLoader, 'loadClass'], [self::$loader, 'loadClass']);
 	}
 
 	public static function unregister(): void
@@ -32,10 +33,27 @@ class StaticConstructorLoaderRegisterer
 			return;
 		}
 
-		$composerClassLoader = array_values(ClassLoader::getRegisteredLoaders())[0];
+		assert(self::$composerClassLoader !== null);
 
-		replace_spl_autoloader([self::$loader, 'loadClass'], [$composerClassLoader, 'loadClass'], false);
+		replace_spl_autoloader([self::$loader, 'loadClass'], [self::$composerClassLoader, 'loadClass'], false);
 
 		self::$loader = null;
+	}
+
+	private static function findComposerLoader(): ClassLoader
+	{
+		$loaders = spl_autoload_functions();
+
+		if ($loaders === false) {
+			throw new StaticConstructorInvalidUsageException('Autoload stack is not activated.');
+		}
+
+		foreach ($loaders as $loader) {
+			if (is_array($loader) && $loader[0] instanceof ClassLoader) {
+				return $loader[0];
+			}
+		}
+
+		throw new StaticConstructorInvalidUsageException(ClassLoader::class . ' was not found in registered autoloaders');
 	}
 }

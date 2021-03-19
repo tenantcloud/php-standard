@@ -7,3 +7,6 @@ parameters:
 		-
 			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
 			path: 'src/TenantCloud/Standard/StaticConstructor/functions.php'
+		-
+			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
+			path: 'src/TenantCloud/Standard/StaticConstructor/StaticConstructorLoaderRegisterer.php'
