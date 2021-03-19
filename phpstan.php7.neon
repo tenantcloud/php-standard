@@ -7,3 +7,6 @@ parameters:
 		-
 			message: '#Argument of an invalid type array\|false supplied for foreach, only iterables are supported\.#i'
 			path: 'tests/TenantCloud/Standard/StaticConstructor/StaticConstructorLoaderTest.php'
+		-
+			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
+			path: 'src/TenantCloud/Standard/StaticConstructor/StaticConstructorLoaderRegisterer.php'

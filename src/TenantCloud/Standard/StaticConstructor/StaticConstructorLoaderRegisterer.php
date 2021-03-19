@@ -42,7 +42,13 @@ class StaticConstructorLoaderRegisterer
 
 	private static function findComposerLoader(): ClassLoader
 	{
-		foreach (spl_autoload_functions() as $loader) {
+		$loaders = spl_autoload_functions();
+
+		if ($loaders === false) {
+			throw new StaticConstructorInvalidUsageException('Autoload stack is not activated.');
+		}
+
+		foreach ($loaders as $loader) {
 			if (is_array($loader) && $loader[0] instanceof ClassLoader) {
 				return $loader[0];
 			}
