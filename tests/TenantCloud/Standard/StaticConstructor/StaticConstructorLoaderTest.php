@@ -99,13 +99,11 @@ test('injects itself after the composer autoloader', function () {
 });
 
 test('calls static constructor', function () {
-	$class = SingletonStub::class;
-
 	StaticConstructorLoaderRegisterer::register();
 
-	class_exists($class);
+	class_exists(SingletonStub::class);
 
-	expect($class::$instance)->toBeInstanceOf($class);
+	expect(SingletonStub::$instance)->toBeInstanceOf(SingletonStub::class);
 });
 
 test('ignores non-existent classes', function () {
