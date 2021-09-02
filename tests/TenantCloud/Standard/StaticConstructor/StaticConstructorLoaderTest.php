@@ -2,7 +2,6 @@
 
 namespace Tests\TenantCloud\Standard\StaticConstructor;
 
-use Composer\Autoload\ClassLoader;
 use Mockery\Exception\BadMethodCallException;
 use Mockery\MethodCall;
 use Mockery\ReceivedMethodCalls;
@@ -71,7 +70,7 @@ test('does not re-register when calling more than once', function () {
 });
 
 test('injects itself after the composer autoloader', function () {
-	$composerClassLoader = array_values(ClassLoader::getRegisteredLoaders())[0];
+	$composerClassLoader = StaticConstructorLoaderRegisterer::findComposerLoader();
 
 	foreach (spl_autoload_functions() as $function) {
 		spl_autoload_unregister($function);
@@ -99,6 +98,8 @@ test('injects itself after the composer autoloader', function () {
 });
 
 test('calls static constructor', function () {
+	expect(class_exists(SingletonStub::class, false))->toBeFalse();
+
 	StaticConstructorLoaderRegisterer::register();
 
 	class_exists(SingletonStub::class);

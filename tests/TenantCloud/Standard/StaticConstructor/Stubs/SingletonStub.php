@@ -6,7 +6,7 @@ use TenantCloud\Standard\StaticConstructor\HasStaticConstructor;
 
 class SingletonStub implements HasStaticConstructor
 {
-	public static self $instance;
+	public static ?self $instance = null;
 
 	public static function __constructStatic(): void
 	{

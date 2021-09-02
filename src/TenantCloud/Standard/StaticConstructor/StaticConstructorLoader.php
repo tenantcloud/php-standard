@@ -17,8 +17,6 @@ final class StaticConstructorLoader extends ClassLoader
 
 	public function __construct(ClassLoader $delegate)
 	{
-		parent::__construct();
-
 		$this->delegate = $delegate;
 	}
 
