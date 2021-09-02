@@ -23,11 +23,11 @@ test('initializes after __constructStatic is called', function () {
 test('public values', function (ValueEnumStub $value, int $expectedValue, string $expectedJson, string $expectedName) {
 	expect($value)->not()->toBeNull();
 	expect($value->value())->toBe($expectedValue);
-	expect(json_encode($value, JSON_THROW_ON_ERROR))->toBe($expectedJson);
+	expect(json_encode([$value], JSON_THROW_ON_ERROR))->toBe($expectedJson);
 	expect($value->name())->toBe($expectedName);
 })->with([
-	[ValueEnumStub::$ONE_TWO_THREE, 123, '"123"', 'ONE_TWO_THREE'],
-	[ValueEnumStub::$FOUR_FIVE_SIX, 456, '"456"', 'FOUR_FIVE_SIX'],
+	[ValueEnumStub::$ONE_TWO_THREE, 123, '[123]', 'ONE_TWO_THREE'],
+	[ValueEnumStub::$FOUR_FIVE_SIX, 456, '[456]', 'FOUR_FIVE_SIX'],
 ]);
 
 test('returns an instance from a value', function (int $value, ValueEnumStub $enumValue) {
