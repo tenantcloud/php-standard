@@ -15,7 +15,7 @@ parameters:
 
 	ignoreErrors:
 		# There's no extension for that :(
-		- '#Call to an undefined method Pest\\Expectations\\Expectation|Pest\\Expectations\\Support\\Extendable::#i'
+		- '#Call to an undefined method (Pest\\Expectation\|Pest\\Support\\Extendable|Pest\\Expectations\\Expectation\|Pest\\Expectations\\Support\\Extendable)::#i'
 		-
 			message: '#Undefined variable: \$this#i'
 			path: '*Test.php'
