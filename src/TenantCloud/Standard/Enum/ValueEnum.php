@@ -112,8 +112,8 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	 * JSON serialization can still be used for better developer experience as there's no
 	 * "jsonUnserialize" method and hence no sort of problems {@see Enum::serialize()} has.
 	 */
-	public function jsonSerialize(): string
+	public function jsonSerialize()
 	{
-		return json_encode($this->value(), JSON_THROW_ON_ERROR);
+		return $this->value();
 	}
 }
