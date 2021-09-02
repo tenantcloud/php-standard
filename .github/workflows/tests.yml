@@ -6,7 +6,7 @@ on:
 
 jobs:
     test:
-        name: Tests & PHPStan on PHP ${{ matrix.php }} and ${{ matrix.dependencies }} dependencies
+        name: Tests & PHPStan on PHP ${{ matrix.php }}, composer ${{ matrix.composer }} and ${{ matrix.dependencies }} dependencies
 
         runs-on: ubuntu-latest
 
@@ -14,6 +14,7 @@ jobs:
             fail-fast: true
             matrix:
                 php: [7.4, 8.0]
+                composer: [2.0.4, latest]
                 dependencies: [lowest, highest]
 
         steps:
@@ -25,6 +26,7 @@ jobs:
                 with:
                     php-version: ${{ matrix.php }}
                     coverage: none
+                    tools: composer:${{ matrix.composer }}
 
             -   name: Install dependencies
                 uses: ramsey/composer-install@v1
