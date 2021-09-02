@@ -40,7 +40,10 @@ class StaticConstructorLoaderRegisterer
 		self::$loader = null;
 	}
 
-	private static function findComposerLoader(): ClassLoader
+	/**
+	 * @internal
+	 */
+	public static function findComposerLoader(): ClassLoader
 	{
 		$loaders = spl_autoload_functions();
 
