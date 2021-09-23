@@ -15,11 +15,11 @@ use function TenantCloud\Standard\Lazy\lazy;
  */
 class PageIterator implements Iterator
 {
-	/** @var Lazy<Generator<I>> */
+	/** @var Lazy<Generator<int, I, mixed, void>> */
 	private Lazy $delegate;
 
 	/**
-	 * @param callable(int): Array<I> $nextItems
+	 * @param callable(int): list<I> $nextItems
 	 */
 	public function __construct(callable $nextItems)
 	{
@@ -47,9 +47,9 @@ class PageIterator implements Iterator
 	/**
 	 * {@inheritdoc}
 	 */
-	public function next()
+	public function next(): void
 	{
-		return $this->delegate->value()->next();
+		$this->delegate->value()->next();
 	}
 
 	/**
