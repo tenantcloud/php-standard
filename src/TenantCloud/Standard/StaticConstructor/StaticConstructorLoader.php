@@ -159,8 +159,6 @@ final class StaticConstructorLoader extends ClassLoader
 	 * {@inheritDoc}
 	 *
 	 * @codeCoverageIgnore
-	 *
-	 * @param mixed $classMapAuthoritative
 	 */
 	public function setClassMapAuthoritative($classMapAuthoritative)
 	{

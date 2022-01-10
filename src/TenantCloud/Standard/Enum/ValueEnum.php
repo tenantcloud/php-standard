@@ -72,6 +72,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 			return $value;
 		}
 
+		/** @var static|null $object */
 		$object = Arr::first(static::items(), static fn (self $object) => $value === $object->value());
 
 		if (!$object) {
