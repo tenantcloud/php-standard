@@ -31,5 +31,10 @@
 		"test": "./vendor/bin/pest",
 		"cs-fix": "./tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --show-progress=estimating",
 		"phpstan":  "./tools/phpstan/vendor/bin/phpstan analyse"
+	},
+	"config": {
+		"allow-plugins": {
+			"pestphp/pest-plugin": true
+		}
 	}
 }

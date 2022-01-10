@@ -17,6 +17,11 @@ class NonValueEnumStub extends Enum
 		$this->value = $value;
 	}
 
+	public static function __constructStatic(): void
+	{
+		parent::__constructStatic();
+	}
+
 	protected static function initializeInstances(): void
 	{
 		self::$JUST_CASE = new self(123);
