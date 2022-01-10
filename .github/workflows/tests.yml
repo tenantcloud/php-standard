@@ -13,7 +13,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [7.4, 8.0, 8.1]
+                php: [8.0, 8.1]
                 composer: [2.2.3, 2.0.4, latest]
                 dependencies: [lowest, highest]
 
@@ -45,7 +45,7 @@ jobs:
 
             -   name: Run PHPStan
                 # Workarounds all day long
-                run: composer phpstan -- -c ${{ fromJSON('["phpstan.php7.neon", "phpstan.php8.neon"]')[matrix.php == '7.4'] }}
+                run: composer phpstan
 
     code-style:
         name: Code style

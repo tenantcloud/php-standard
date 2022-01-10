@@ -26,3 +26,10 @@ parameters:
 		# @return never is ignored. Again a bug.
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__serialize\(\) return type has no value type specified in iterable type array\.#i'
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__unserialize\(\) has parameter \$data with no value type specified in iterable type array.#i'
+		# Workaround for changed types in PHP8
+		-
+			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
+			path: 'src/TenantCloud/Standard/StaticConstructor/functions.php'
+		-
+			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
+			path: 'src/TenantCloud/Standard/StaticConstructor/StaticConstructorLoaderRegisterer.php'
