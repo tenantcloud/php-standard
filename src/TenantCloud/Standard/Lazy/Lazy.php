@@ -5,7 +5,7 @@ namespace TenantCloud\Standard\Lazy;
 /**
  * Represents a value with lazy initialization.
  *
- * @template T
+ * @template-covariant T
  */
 interface Lazy
 {

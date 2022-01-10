@@ -2,6 +2,7 @@
 
 namespace TenantCloud\Standard\Enum;
 
+use ReflectionClass;
 use TenantCloud\Standard\StaticConstructor\HasStaticConstructor;
 
 /**
@@ -82,7 +83,7 @@ abstract class Enum implements HasStaticConstructor
 	final public static function items(): array
 	{
 		return array_filter(
-			get_class_vars(static::class),
+			(new ReflectionClass(static::class))->getStaticProperties(),
 			static fn ($value) => $value instanceof static
 		);
 	}

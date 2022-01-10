@@ -72,6 +72,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 			return $value;
 		}
 
+		/** @var static|null $object */
 		$object = Arr::first(static::items(), static fn (self $object) => $value === $object->value());
 
 		if (!$object) {
@@ -112,7 +113,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	 * JSON serialization can still be used for better developer experience as there's no
 	 * "jsonUnserialize" method and hence no sort of problems {@see Enum::serialize()} has.
 	 */
-	public function jsonSerialize()
+	public function jsonSerialize(): mixed
 	{
 		return $this->value();
 	}

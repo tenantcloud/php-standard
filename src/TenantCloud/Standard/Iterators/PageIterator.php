@@ -39,7 +39,7 @@ class PageIterator implements Iterator
 	/**
 	 * {@inheritdoc}
 	 */
-	public function current()
+	public function current(): mixed
 	{
 		return $this->delegate->value()->current();
 	}
@@ -55,7 +55,7 @@ class PageIterator implements Iterator
 	/**
 	 * {@inheritdoc}
 	 */
-	public function key()
+	public function key(): mixed
 	{
 		return $this->delegate->value()->key();
 	}
