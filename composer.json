@@ -19,7 +19,8 @@
 		"files": [
 			"src/TenantCloud/Standard/StaticConstructor/functions.php",
 			"src/TenantCloud/Standard/StaticConstructor/load.php",
-			"src/TenantCloud/Standard/Lazy/functions.php"
+			"src/TenantCloud/Standard/Lazy/functions.php",
+			"src/TenantCloud/Standard/Optional/functions.php"
 		]
 	},
 	"autoload-dev": {
