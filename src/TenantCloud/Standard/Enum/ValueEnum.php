@@ -24,7 +24,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function __toString(): string
 	{
@@ -32,7 +32,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public static function __constructStatic(): void
 	{
@@ -83,7 +83,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	final protected static function initialize(): void
 	{
@@ -107,7 +107,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * {@inheritDoc}
 	 *
 	 * While normal serialization is disabled due to being unable to deserialize the enum back,
 	 * JSON serialization can still be used for better developer experience as there's no

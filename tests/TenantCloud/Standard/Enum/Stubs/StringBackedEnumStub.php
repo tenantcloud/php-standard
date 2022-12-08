@@ -6,6 +6,7 @@ use TenantCloud\Standard\Enum\BackedEnumExtensions;
 
 enum StringBackedEnumStub: string
 {
+	/** @use BackedEnumExtensions<string> */
 	use BackedEnumExtensions;
 
 	case ONE = 'one';

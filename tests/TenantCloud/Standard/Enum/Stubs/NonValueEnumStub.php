@@ -25,7 +25,7 @@ class NonValueEnumStub extends Enum
 	protected static function initializeInstances(): void
 	{
 		self::$JUST_CASE = new self(123);
-		self::$INHERITED_CASE = new class(789) extends NonValueEnumStub {
+		self::$INHERITED_CASE = new class (789) extends NonValueEnumStub {
 			public function value(): int
 			{
 				return 456;

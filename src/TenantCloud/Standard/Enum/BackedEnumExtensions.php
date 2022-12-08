@@ -5,12 +5,14 @@ namespace TenantCloud\Standard\Enum;
 use BackedEnum;
 
 /**
+ * @template TEnumValue
+ *
  * @mixin BackedEnum
  */
 trait BackedEnumExtensions
 {
 	/**
-	 * @return ($this is IntBackedEnum ? int[] : string[])
+	 * @return TEnumValue[]
 	 */
 	public static function values(): array
 	{

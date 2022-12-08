@@ -2,9 +2,6 @@
 
 namespace Tests\TenantCloud\Standard\Enum;
 
-use TenantCloud\Standard\Enum\BackedEnumExtensions;
-use TenantCloud\Standard\Enum\EnumInvalidUsageException;
-use Tests\TenantCloud\Standard\Enum\Stubs\DuplicateValueEnumStub;
 use Tests\TenantCloud\Standard\Enum\Stubs\IntBackedEnumStub;
 use Tests\TenantCloud\Standard\Enum\Stubs\StringBackedEnumStub;
 
