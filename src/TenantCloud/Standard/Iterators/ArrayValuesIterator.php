@@ -39,7 +39,7 @@ class ArrayValuesIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function current(): mixed
 	{
@@ -47,7 +47,7 @@ class ArrayValuesIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function next(): void
 	{
@@ -55,7 +55,7 @@ class ArrayValuesIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function key(): mixed
 	{
@@ -63,7 +63,7 @@ class ArrayValuesIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function valid(): bool
 	{
@@ -71,7 +71,7 @@ class ArrayValuesIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function rewind(): void
 	{

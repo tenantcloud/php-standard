@@ -17,16 +17,16 @@ class CallableLazy implements Lazy
 
 	private bool $initialized = false;
 
-	/** @var Closure(): T */
-	private Closure $resolveValue;
-
-	public function __construct(Closure $resolve)
-	{
-		$this->resolveValue = $resolve;
+	/**
+	 * @param Closure(): T $resolveValue
+	 */
+	public function __construct(
+		private readonly Closure $resolveValue
+	) {
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function value()
 	{
@@ -36,7 +36,7 @@ class CallableLazy implements Lazy
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function isInitialized(): bool
 	{

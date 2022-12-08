@@ -37,7 +37,7 @@ class PageIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function current(): mixed
 	{
@@ -45,7 +45,7 @@ class PageIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function next(): void
 	{
@@ -53,7 +53,7 @@ class PageIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function key(): mixed
 	{
@@ -61,7 +61,7 @@ class PageIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function valid(): bool
 	{
@@ -69,7 +69,7 @@ class PageIterator implements Iterator
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function rewind(): void
 	{

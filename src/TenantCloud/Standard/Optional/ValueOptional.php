@@ -18,7 +18,7 @@ final class ValueOptional implements Optional
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function value()
 	{
@@ -26,7 +26,7 @@ final class ValueOptional implements Optional
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function hasValue(): bool
 	{

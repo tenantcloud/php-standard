@@ -36,7 +36,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -46,7 +46,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -56,7 +56,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -66,7 +66,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -76,7 +76,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -86,7 +86,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -96,7 +96,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -106,7 +106,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -116,7 +116,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -126,7 +126,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -136,7 +136,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -146,7 +146,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -156,7 +156,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -166,7 +166,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -176,7 +176,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -186,7 +186,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -196,7 +196,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -206,7 +206,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
@@ -216,7 +216,7 @@ final class StaticConstructorLoader extends ClassLoader
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 *
 	 * @codeCoverageIgnore
 	 */
