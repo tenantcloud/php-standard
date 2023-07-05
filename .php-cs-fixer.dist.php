@@ -5,7 +5,6 @@ require __DIR__ . '/vendor/tenantcloud/php-cs-fixer-rule-sets/bootstrap.php';
 
 use PhpCsFixer\Finder;
 use TenantCloud\PhpCsFixer\Config;
-use TenantCloud\PhpCsFixer\RuleSet\TenantCloudSet;
 
 $finder = Finder::create()
 	->in(__DIR__)
