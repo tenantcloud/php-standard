@@ -13,19 +13,16 @@ parameters:
 		- tests
 
 	excludePaths:
-		- tests/TenantCloud/Standard/Enum/DuplicateValueEnumTest.php
-		- tests/TenantCloud/Standard/Enum/Stubs/DuplicateValueEnumStub.php
+		- tests/Enum/DuplicateValueEnumTest.php
+		- tests/Enum/Stubs/DuplicateValueEnumStub.php
 
 	ignoreErrors:
 		# There's no extension for that :(
-		- '#Call to an undefined method (Pest\\Expectation\|Pest\\Support\\Extendable|Pest\\Expectations\\Expectation\|Pest\\Expectations\\Support\\Extendable)::#i'
+		- '#Call to an undefined method Pest\\.*#i'
 		-
 			message: '#Undefined variable: \$this#i'
 			path: '*Test.php'
-		-
-			message: '#Cannot call method (with|expectException|expectExceptionObject)\(\) on mixed\.#i'
-			path: '*Test.php'
-		- '#Trait Tests\\TenantCloud\\Standard\\StaticConstructor\\StaticConstructorLoaderState is used zero times and is not analysed\.#i'
+		- '#Trait Tests\\StaticConstructor\\StaticConstructorLoaderState is used zero times and is not analysed\.#i'
 		# Also a bug?
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__debugInfo\(\) return type has no value type specified in iterable type array\.#i'
 		- '#Parameter \#1 \$(callback|autoload_function) of function spl_autoload_register expects \(?callable\(string\): void\)?\|?(null)?, array\{.*, ''loadClass''\} given\.#i'
@@ -36,7 +33,7 @@ parameters:
 		# Workaround for changed types in PHP8
 		-
 			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
-			path: 'src/TenantCloud/Standard/StaticConstructor/functions.php'
+			path: 'src/StaticConstructor/functions.php'
 		-
 			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
-			path: 'src/TenantCloud/Standard/StaticConstructor/StaticConstructorLoaderRegisterer.php'
+			path: 'src/StaticConstructor/StaticConstructorLoaderRegisterer.php'
