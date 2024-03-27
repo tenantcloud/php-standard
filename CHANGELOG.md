@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/tenantcloud/php-standard/compare/v2.1.0...v2.1.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* Missing static constructor loader in ClassLoader::getRegisteredLoaders() ([#13](https://github.com/tenantcloud/php-standard/issues/13)) ([51fe793](https://github.com/tenantcloud/php-standard/commit/51fe793cb4ee04badcce81b28dc600ba8e904af0))
+
 # [2.0.0](https://github.com/tenantcloud/php-standard/compare/v1.5.0...v2.0.0) (2022-12-08)
 
 
