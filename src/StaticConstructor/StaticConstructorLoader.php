@@ -168,7 +168,24 @@ final class StaticConstructorLoader extends ClassLoader
 	 */
 	public function register($prepend = false)
 	{
-		$this->delegate->register($prepend);
+		spl_autoload_register([$this, 'loadClass'], true, $prepend);
+
+		$that = $this;
+
+		(function () use ($that, $prepend) {
+			$vendorDir = $this->vendorDir;
+
+			if ($vendorDir === null) {
+				return;
+			}
+
+			if ($prepend) {
+				self::$registeredLoaders = [$vendorDir => $that] + self::$registeredLoaders;
+			} else {
+				unset(self::$registeredLoaders[$vendorDir]);
+				self::$registeredLoaders[$vendorDir] = $that;
+			}
+		})->call($this->delegate);
 	}
 
 	/**
@@ -176,7 +193,15 @@ final class StaticConstructorLoader extends ClassLoader
 	 */
 	public function unregister()
 	{
-		$this->delegate->unregister();
+		spl_autoload_unregister([$this, 'loadClass']);
+
+		(function () {
+			$vendorDir = $this->vendorDir;
+
+			if ($vendorDir !== null) {
+				unset(self::$registeredLoaders[$vendorDir]);
+			}
+		})->call($this->delegate);
 	}
 
 	/**

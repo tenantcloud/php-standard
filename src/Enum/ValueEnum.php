@@ -97,6 +97,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 
 	public function __toString(): string
 	{
+		/* @phpstan-ignore-next-line */
 		return (string) $this->value();
 	}
 

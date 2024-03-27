@@ -1,5 +1,6 @@
 <?php
 
+use Composer\Autoload\ClassLoader;
 use Mockery\Exception\BadMethodCallException;
 use Mockery\MethodCall;
 use Mockery\ReceivedMethodCalls;
@@ -70,6 +71,8 @@ test('does not re-register when calling more than once', function () {
 test('injects itself after the composer autoloader', function () {
 	$composerClassLoader = StaticConstructorLoaderRegisterer::findComposerLoader();
 
+	expect(ClassLoader::getRegisteredLoaders())->toContain($composerClassLoader);
+
 	foreach (spl_autoload_functions() as $function) {
 		spl_autoload_unregister($function);
 	}
@@ -79,6 +82,8 @@ test('injects itself after the composer autoloader', function () {
 	spl_autoload_register($lastCallback = function () {});
 
 	StaticConstructorLoaderRegisterer::register();
+
+	expect(ClassLoader::getRegisteredLoaders())->toContain(StaticConstructorLoaderRegisterer::loader());
 
 	$autoLoaders = spl_autoload_functions();
 

@@ -2,17 +2,15 @@
 
 namespace TenantCloud\Standard\StaticConstructor;
 
+use Composer\Autoload\ClassLoader;
+
 /**
  * @param array{object, string} $find
- * @param array{object, string} $replace
+ * @param callable(): void      $replace
  */
-function replace_spl_autoloader(array $find, array $replace, bool $throwNotFound = true): void
+function replace_spl_autoloader(array $find, callable $replace, bool $throwNotFound = true): void
 {
 	$loaders = spl_autoload_functions();
-
-	if ($loaders === false) {
-		throw new StaticConstructorInvalidUsageException('Autoload stack is not activated.');
-	}
 
 	$otherLoaders = [];
 	$loaderToReplace = null;
@@ -37,14 +35,19 @@ function replace_spl_autoloader(array $find, array $replace, bool $throwNotFound
 
 	// Unregister Composer autoloader and all preceding autoloaders as __autoload() implementation
 	foreach ([...$otherLoaders, $loaderToReplace] as $loader) {
+		if (is_array($loader) && $loader[0] instanceof ClassLoader) {
+			$loader[0]->unregister();
+
+			continue;
+		}
+
 		spl_autoload_unregister($loader);
 	}
 
-	// Restoring the original queue order
-	$loadersToRestore = [$replace, ...array_reverse($otherLoaders)];
+	$replace();
 
 	// Register given function from $loadersToRestore as __autoload implementation
-	foreach ($loadersToRestore as $loader) {
+	foreach (array_reverse($otherLoaders) as $loader) {
 		spl_autoload_register($loader, true, true);
 	}
 }
