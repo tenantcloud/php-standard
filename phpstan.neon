@@ -30,10 +30,3 @@ parameters:
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__unserialize\(\) has parameter \$data with no value type specified in iterable type array.#i'
 		# We don't care
 		- '#Part \$value \(mixed\) of encapsed string cannot be cast to string\.#i'
-		# Workaround for changed types in PHP8
-		-
-			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
-			path: 'src/StaticConstructor/functions.php'
-		-
-			message: '#Strict comparison using === between array and false will always evaluate to false\.#i'
-			path: 'src/StaticConstructor/StaticConstructorLoaderRegisterer.php'
