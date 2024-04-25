@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/tenantcloud/php-standard/compare/v2.1.1...v2.2.0) (2024-04-25)
+
+
+### Features
+
+* Template sync ([#15](https://github.com/tenantcloud/php-standard/issues/15)) ([7950570](https://github.com/tenantcloud/php-standard/commit/79505704c87a4aabc9d6533fb288dbcd6ccd14dd)), closes [#14](https://github.com/tenantcloud/php-standard/issues/14)
+
 ## [2.1.1](https://github.com/tenantcloud/php-standard/compare/v2.1.0...v2.1.1) (2024-03-27)
 
 
