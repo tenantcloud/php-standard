@@ -5,7 +5,8 @@ on: [push, pull_request]
 jobs:
     phpunit:
         name: PHPUnit on PHP v${{ matrix.php }}
-        runs-on: ubuntu-latest
+        runs-on: pipeline
+        container: ubuntu:22.04
         strategy:
             fail-fast: true
             matrix:
@@ -42,7 +43,8 @@ jobs:
 
     php-cs-fixer:
         name: php-cs-fixer
-        runs-on: ubuntu-latest
+        runs-on: pipeline
+        container: ubuntu:22.04
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v3
@@ -72,7 +74,8 @@ jobs:
 
     phpstan:
         name: PHPStan on PHP v${{ matrix.php }}
-        runs-on: ubuntu-latest
+        runs-on: pipeline
+        container: ubuntu:22.04
         strategy:
             fail-fast: true
             matrix:
