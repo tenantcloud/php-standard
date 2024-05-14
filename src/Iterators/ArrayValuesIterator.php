@@ -16,23 +16,19 @@ class ArrayValuesIterator implements Iterator
 {
 	private int $position;
 
-	/** @var T[] */
-	private array $items;
-
 	/**
-	 * @param T[] $items
+	 * @param list<T> $items
 	 */
-	public function __construct(array $items = [])
-	{
-		$this->items = $items;
-
+	public function __construct(/** @var list<T> */
+		private array $items = []
+	) {
 		$this->rewind();
 	}
 
 	/**
 	 * Merges new elements at given position.
 	 *
-	 * @param T[] $values
+	 * @param list<T> $values
 	 */
 	public function merge(array $values, int $at): void
 	{

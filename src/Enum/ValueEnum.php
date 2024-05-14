@@ -26,7 +26,7 @@ abstract class ValueEnum extends Enum implements JsonSerializable
 	/**
 	 * Get the instance as an array.
 	 *
-	 * @return T[]
+	 * @return list<T>
 	 */
 	public static function values(): array
 	{
