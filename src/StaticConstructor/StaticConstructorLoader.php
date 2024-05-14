@@ -13,12 +13,7 @@ use Composer\Autoload\ClassLoader;
  */
 final class StaticConstructorLoader extends ClassLoader
 {
-	private ClassLoader $delegate;
-
-	public function __construct(ClassLoader $delegate)
-	{
-		$this->delegate = $delegate;
-	}
+	public function __construct(private ClassLoader $delegate) {}
 
 	/**
 	 * @param class-string $className

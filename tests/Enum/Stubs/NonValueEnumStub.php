@@ -10,12 +10,7 @@ class NonValueEnumStub extends Enum
 
 	public static self $INHERITED_CASE;
 
-	private int $value;
-
-	public function __construct(int $value)
-	{
-		$this->value = $value;
-	}
+	public function __construct(private int $value) {}
 
 	public function value(): int
 	{

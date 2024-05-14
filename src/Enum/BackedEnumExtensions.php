@@ -12,7 +12,7 @@ use BackedEnum;
 trait BackedEnumExtensions
 {
 	/**
-	 * @return TEnumValue[]
+	 * @return list<TEnumValue>
 	 */
 	public static function values(): array
 	{
