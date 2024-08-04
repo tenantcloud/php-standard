@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/tenantcloud/php-standard/compare/v2.2.0...v2.2.1) (2024-08-04)
+
+
+### Bug Fixes
+
+* Added laravel 11 support ([#26](https://github.com/tenantcloud/php-standard/issues/26)) ([2790063](https://github.com/tenantcloud/php-standard/commit/2790063dbac2fac8c44d219b4e0f4aa5b49af3e8))
+
 # [2.2.0](https://github.com/tenantcloud/php-standard/compare/v2.1.1...v2.2.0) (2024-04-25)
 
 
