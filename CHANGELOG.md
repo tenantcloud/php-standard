@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/tenantcloud/php-standard/compare/v2.2.1...v2.2.2) (2025-07-01)
+
+
+### Bug Fixes
+
+* Fixed code style ([3c3d1eb](https://github.com/tenantcloud/php-standard/commit/3c3d1eb4a9f96132f80f86361a46dd7b3694736c))
+* Fixed phpstan for tests ([4a3ba67](https://github.com/tenantcloud/php-standard/commit/4a3ba67bc62c96cbcf32ce551e156cc903a1b393))
+
 ## [2.2.1](https://github.com/tenantcloud/php-standard/compare/v2.2.0...v2.2.1) (2024-08-04)
 
 
