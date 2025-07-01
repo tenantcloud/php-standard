@@ -19,9 +19,14 @@ parameters:
 	ignoreErrors:
 		# There's no extension for that :(
 		- '#Call to an undefined method Pest\\.*#i'
-		-
-			message: '#Undefined variable: \$this#i'
-			path: '*Test.php'
+		- '#Call to method .* of internal class Pest\\.*#'
+		- '#Call to an undefined method PHPUnit\\Framework\\TestCase::saveAutoloaders\(\)#'
+		- '#Call to an undefined method PHPUnit\\Framework\\TestCase::restoreAutoloaders\(\)#'
+		- '#Call to an undefined method PHPUnit\\Framework\\TestCase::clearAutoloaders\(\)#'
+		- '#Access to constant on internal class PHPUnit\\Framework\\Exception#'
+		- '#Access to constant on internal class PHPUnit\\Framework\\Constraint\\Exception#'
+		- '#Access to constant on internal class PHPUnit\\Framework\\ExpectationFailedException#'
+		- '#Call to internal static method TenantCloud\\Standard\\StaticConstructor\\StaticConstructorLoaderRegisterer::findComposerLoader#'
 		- '#Trait Tests\\StaticConstructor\\StaticConstructorLoaderState is used zero times and is not analysed\.#i'
 		# Also a bug?
 		- '#Method TenantCloud\\Standard\\Enum\\Enum::__debugInfo\(\) return type has no value type specified in iterable type array\.#i'

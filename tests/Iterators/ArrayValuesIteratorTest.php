@@ -52,6 +52,7 @@ test('merges items in the process', function () {
 
 	foreach ($iterator as $value) {
 		if ($addTimes > 0) {
+			/* @phpstan-ignore-next-line */
 			$iterator->merge([$value + 1], $iterator->key() + 1);
 
 			$addTimes--;
