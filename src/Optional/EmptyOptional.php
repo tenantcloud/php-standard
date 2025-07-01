@@ -9,7 +9,7 @@ final class EmptyOptional implements Optional
 {
 	public static function get(): self
 	{
-		/** @var EmptyOptional|null $instance */
+		/** @var self|null $instance */
 		static $instance;
 
 		return $instance ??= new self();
