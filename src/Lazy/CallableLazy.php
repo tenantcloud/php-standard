@@ -21,9 +21,7 @@ class CallableLazy implements Lazy
 	/**
 	 * @param Closure(): T $resolveValue
 	 */
-	public function __construct(
-		private readonly Closure $resolveValue
-	) {}
+	public function __construct(private readonly Closure $resolveValue) {}
 
 	public function value()
 	{

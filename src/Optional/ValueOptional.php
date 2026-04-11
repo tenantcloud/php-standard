@@ -12,9 +12,7 @@ final class ValueOptional implements Optional
 	/**
 	 * @param T $value
 	 */
-	public function __construct(
-		private mixed $value,
-	) {}
+	public function __construct(private mixed $value) {}
 
 	public function value()
 	{
